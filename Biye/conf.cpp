@@ -20,6 +20,20 @@ std::string ConfMgr::get(const std::string &name)
 {
 	return get(name, "");
 }
+int64_t ConfMgr::get_int(const std::string &name, int64_t default_value)
+{
+	std::string str = get(name);
+	int ret = default_value;
+	try {
+		ret = std::stoll(str);
+	} catch(...) {
+	}
+	return ret;
+}
+int64_t ConfMgr::get_int(const std::string &name)
+{
+	return get_int(name, 0);
+}
 std::string ConfMgr::get(const std::string & name, const std::string default_value)
 {
 	if (kv_.find(name) == kv_.end()) {

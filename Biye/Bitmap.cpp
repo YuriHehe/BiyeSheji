@@ -42,6 +42,7 @@ uint32_t Bitmap::nbit()
 	return bits_.count();
 }
 
+
 void Bitmap::get_set_list(std::vector<int>& list)
 {
 	list.clear();

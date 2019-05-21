@@ -1,14 +1,63 @@
 #include "BitmapIndex.h"
 #include "log.h"
+#include "util.h"
+#include "timer.h"
 
 namespace bitmap {
 BitmapIndex::BitmapIndex()
 {
+	all_ = bitmap::BitmapMgr::instance()->allocate();
 }
+int BitmapIndex::SearchStupid(const Service::Req& req, Service::Rsp& rsp) const
+{
+	timer::Timer timer;
+	std::vector<int> tmp;
+	std::set<int> ans;
+	all_->get_set_list(tmp);
+	std::copy(tmp.begin(), tmp.end(), std::back_inserter(ans));
+	for (const auto& field : allow_field_) {
+		std::set<int> excludes;
+		const auto& index_field = index_.find(field);
+		if (index_field == index_.end()) {
+			ERROR_LOG("field not found");
+			continue;
+		}
+		const auto& field_all = index_field->second.find(BITMAP_MAGIC_ALL);
+		if (field_all == index_field->second.end()) {
+			ERROR_LOG("all not found");
+			continue;
+		}
+		tmp.clear(); field_all->second->get_set_list(tmp);
+		std::copy(tmp.begin(), tmp.end(), std::back_inserter(excludes));
+		const auto& items = req.user_context.target_items;
+		auto itr = items.find(field);
+		if (itr != items.end()) {
+			for (auto value : itr->second) {
+				const auto field_value = index_field->second.find(value);
+				if (field_value == index_field->second.end()) {
+					INFO_LOG("field value not found");
+					continue;
+				}
+				tmp.clear(); field_all->second->get_set_list(tmp);
+				for (auto v : tmp) {
+					excludes.erase(v);
+				}
+			}
+		}
+		for (auto v : excludes) {
+			ans.erase(v);
+		}
+	}
+	std::copy(ans.begin(), ans.end(), std::back_inserter(rsp.res_aids));
+	INFO_LOG("stupid search time use " + std::to_string(timer.get_elapsed_us()) + "ms");
+	return RET_SUCCESS;
+}
+
 int BitmapIndex::Search(const Service::Req& req, Service::Rsp& rsp) const
 {
+	timer::Timer timer;
 	auto include_ads = BitmapMgr::instance_thread()->allocate();
-	include_ads->Flip();
+	include_ads->Copy(*all_);
 
 	for (const auto& field : allow_field_) {
 		auto exclude_ads = BitmapMgr::instance_thread()->allocate();
@@ -38,6 +87,8 @@ int BitmapIndex::Search(const Service::Req& req, Service::Rsp& rsp) const
 		include_ads->Exclude(*exclude_ads);
 	}
 
+	include_ads->get_set_list(rsp.res_aids);
+	INFO_LOG("stupid search time use " + std::to_string(timer.get_elapsed_us()) + "ms");
 	return RET_SUCCESS;
 }
 int BitmapIndex::add_to_index(const std::unordered_map<int64_t, data::AdModel> & models)
@@ -60,6 +111,7 @@ int BitmapIndex::add_to_index(const std::unordered_map<int64_t, data::AdModel> &
 			}
 			index_[field][BITMAP_MAGIC_ALL]->Set(index, 1);
 		}
+		all_->Set(index, 1);
 	}
 
 	return RET_SUCCESS;

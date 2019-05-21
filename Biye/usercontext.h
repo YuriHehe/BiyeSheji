@@ -5,7 +5,7 @@
 namespace Service {
 class UserContext {
 public:
-	// ÇëÇó´øµÄ¶¨ÏòÌõ¼þ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	std::unordered_map<std::string, std::vector<int64_t>> target_items;
 };
 
@@ -16,7 +16,7 @@ struct Req {
 };
 
 struct Rsp {
-	std::vector<int64_t> res_aids;
+	std::vector<int> res_aids;
 };
 
 struct REQ {

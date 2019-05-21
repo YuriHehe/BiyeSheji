@@ -8,16 +8,20 @@ public:
 	void ParseFromString(const std::string &str);
 
 	int get_items(const std::string &field, std::vector<int64_t> &ret_value) const;
+
+	void set_items(const std::string &field, std::vector<int64_t> value) {
+		target_items[field] = value;
+	}
 public:
 	int64_t aid() const {
 		return ad_id;
 	}
 
 private:
-	// ¶¨ÏòÌõ¼ş
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	std::unordered_map<std::string, std::vector<int64_t>> target_items;
 
-	// ¹ã¸æÊôĞÔ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int64_t ad_id;
 };
 }

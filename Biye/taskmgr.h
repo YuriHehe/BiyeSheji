@@ -2,6 +2,7 @@
 
 #include "predefine.h"
 #include "threadpool.h"
+#include "conf.h"
 
 namespace Task {
 class TaskMgr {
@@ -11,7 +12,7 @@ public:
 		return &instance_;
 	}
 
-	TaskMgr() : worker_pool_(20) {}
+	TaskMgr() : worker_pool_(conf::ConfMgr::instance()->get_int("thread_pool_num", 20)) {}
 
 	template<class F, class... Args>
 	auto run(F&& f, Args&&... args)
