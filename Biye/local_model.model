@@ -1,0 +1,8 @@
+1 age[1,2,3,4] gender[0,1]
+2 age[1,2,3,4,5,6,7] gender[0]
+3 age[1,2,3,4] gender[0]
+4 age[1,2] gender[1]
+5 age[1] gender[0]
+6 age[3,4]
+7 age[4]
+8 age[1]

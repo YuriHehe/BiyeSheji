@@ -40,6 +40,9 @@
     <Filter Include="源文件\mock">
       <UniqueIdentifier>{71d29629-4de9-41e2-a4ae-02a95f88d3eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\offline">
+      <UniqueIdentifier>{be286fca-af57-4cef-a4a3-3d225b6ecd9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -114,6 +117,9 @@
     <ClInclude Include="TestService.h">
       <Filter>源文件\mock</Filter>
     </ClInclude>
+    <ClInclude Include="offline_rand_model.h">
+      <Filter>源文件\offline</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -161,9 +167,15 @@
     <ClCompile Include="TestService.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="offline_rand_model.cpp">
+      <Filter>源文件\offline</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="conf.conf">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="local_model.model">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
