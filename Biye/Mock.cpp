@@ -1,16 +1,18 @@
 #include "Mock.h"
 
 namespace mock {
-void MockMgr::PushReq(const Service::Req & req, Service::Rsp & rsp)
+void MockMgr::PushReq(Service::REQ* p2)
 {
+	p2->mtx_.lock();
+	std::lock_guard<std::mutex> lock(mtx_msg_);
+	wait_list_.Push(p2);
 }
 
-std::pair<const Service::Req*, Service::Rsp*> MockMgr::PopReq()
+Service::REQ* MockMgr::PopReq()
 {
-	return std::pair<const Service::Req*, Service::Rsp*>();
-}
-std::shared_mutex & MockMgr::get_mutex()
-{
-	return mtx_msg_;
+	std::lock_guard<std::mutex> lock(mtx_msg_);
+	auto ret = wait_list_.Pop();
+
+	return ret;
 }
 }

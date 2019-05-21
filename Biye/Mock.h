@@ -2,30 +2,36 @@
 
 #include "predefine.h"
 #include "usercontext.h"
+#include "RingBuffer.h"
 
 // 用于模拟线上请求
 
 namespace mock {
+
 class MockMgr {
 public:
-	void PushReq(const Service::Req& req, Service::Rsp& rsp);
+	static MockMgr* instance() {
+		static MockMgr instance;
+		return &instance;
+	}
 
-	std::pair<const Service::Req*, Service::Rsp*> PopReq();
+	~MockMgr() {
+	}
 
-	std::shared_mutex& get_mutex();
+	void PushReq(Service::REQ* req);
 
-public:
-	// 用于唤醒io线程用的
-	std::shared_mutex mtx_msg_;
+	Service::REQ* PopReq();
+
+private:
+	std::mutex mtx_msg_;
 
 private:
 	// 等待队列
-	std::vector<std::pair<Service::Req*, Service::Rsp*>> wait_list_;
+	ringbuffer::RingBuffer<Service::REQ> wait_list_;
 
 	std::mutex mutex_;
 
 	// 队列为空
 	std::atomic<bool> cond_empty_;
-
 };
 }

@@ -46,6 +46,11 @@ public:
 		return ret;
 	}
 
+	bool Empty() {
+		std::lock_guard<std::mutex> lock(mutex_);
+		return empty();
+	}
+
 private:
 	void enlarge(size_t buffer_size = 1024) {
 		std::vector<T*> new_data;

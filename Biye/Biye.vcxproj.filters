@@ -37,6 +37,9 @@
     <Filter Include="源文件\thread">
       <UniqueIdentifier>{1e95b958-020a-4e4a-86c5-cf5fbaa6e9e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\mock">
+      <UniqueIdentifier>{71d29629-4de9-41e2-a4ae-02a95f88d3eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -105,11 +108,11 @@
     <ClInclude Include="task.h">
       <Filter>源文件\task</Filter>
     </ClInclude>
-    <ClInclude Include="iotask.h">
-      <Filter>源文件\task</Filter>
-    </ClInclude>
     <ClInclude Include="Mock.h">
-      <Filter>源文件</Filter>
+      <Filter>源文件\mock</Filter>
+    </ClInclude>
+    <ClInclude Include="TestService.h">
+      <Filter>源文件\mock</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -149,14 +152,14 @@
     <ClCompile Include="wokertask.cpp">
       <Filter>源文件\task</Filter>
     </ClCompile>
-    <ClCompile Include="Mock.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="task.cpp">
       <Filter>源文件\task</Filter>
     </ClCompile>
-    <ClCompile Include="iotask.cpp">
-      <Filter>源文件\task</Filter>
+    <ClCompile Include="Mock.cpp">
+      <Filter>源文件\mock</Filter>
+    </ClCompile>
+    <ClCompile Include="TestService.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

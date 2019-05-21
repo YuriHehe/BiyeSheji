@@ -8,6 +8,10 @@ public:
 	void run();
 	void stop();
 
+	bool is_stoping() {
+		return stop_sign_;
+	}
+
 	TaskBase() : stop_sign_(false) {};
 	~TaskBase();
 

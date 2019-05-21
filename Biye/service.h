@@ -7,8 +7,5 @@ namespace Service {
 class AdService {
 public:
 	void run();
-
-private:
-	void run_io_thread();
 };
 }

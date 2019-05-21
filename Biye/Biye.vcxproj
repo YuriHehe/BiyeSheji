@@ -156,7 +156,6 @@
     <ClInclude Include="BitmapPredefine.h" />
     <ClInclude Include="conf.h" />
     <ClInclude Include="error_code.h" />
-    <ClInclude Include="iotask.h" />
     <ClInclude Include="log.h" />
     <ClInclude Include="Mock.h" />
     <ClInclude Include="predefine.h" />
@@ -168,6 +167,7 @@
     <ClInclude Include="task.h" />
     <ClInclude Include="taskmgr.h" />
     <ClInclude Include="test.h" />
+    <ClInclude Include="TestService.h" />
     <ClInclude Include="threadpool.h" />
     <ClInclude Include="usercontext.h" />
     <ClInclude Include="wokertask.h" />
@@ -181,7 +181,6 @@
     <ClCompile Include="BitmapMgr.cpp" />
     <ClCompile Include="Biye.cpp" />
     <ClCompile Include="conf.cpp" />
-    <ClCompile Include="iotask.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Mock.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -192,6 +191,7 @@
     </ClCompile>
     <ClCompile Include="task.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="TestService.cpp" />
     <ClCompile Include="wokertask.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@
 namespace Task {
 int AdloadTask::realrun()
 {
-	while (!stop_sign_) {
+	while (!is_stoping()) {
 		// TODO reload logic
 		reload();
 

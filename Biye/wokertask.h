@@ -9,5 +9,6 @@ public:
 protected:
 	virtual int realrun() override;
 private:
+	void mock_listen();
 };
 }
