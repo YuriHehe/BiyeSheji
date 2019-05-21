@@ -23,7 +23,7 @@ void WorkerTask::mock_listen()
 		if (ret != RET_SUCCESS) {
 			ERROR_LOG("Error Search, error code:" + std::to_string(ret));
 		}
-		req->mtx_.unlock();
+		req->ready_ = true;
 	}
 }
 }

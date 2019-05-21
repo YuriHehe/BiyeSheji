@@ -170,7 +170,9 @@
     <ClInclude Include="test.h" />
     <ClInclude Include="TestService.h" />
     <ClInclude Include="threadpool.h" />
+    <ClInclude Include="timer.h" />
     <ClInclude Include="usercontext.h" />
+    <ClInclude Include="util.h" />
     <ClInclude Include="wokertask.h" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +196,7 @@
     <ClCompile Include="task.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="TestService.cpp" />
+    <ClCompile Include="util.cpp" />
     <ClCompile Include="wokertask.cpp" />
   </ItemGroup>
   <ItemGroup>

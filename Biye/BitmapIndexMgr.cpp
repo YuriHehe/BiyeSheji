@@ -8,7 +8,7 @@ void bitmap::BitmapIndexMgr::init()
 
 int BitmapIndexMgr::build(const std::unordered_map<int64_t, data::AdModel> & models)
 {
-	BitmapIndexPtr new_data;
+	BitmapIndexPtr new_data = BitmapIndexPtr(new BitmapIndex());
 	// build
 	new_data->add_to_index(models);
 
@@ -31,6 +31,7 @@ int BitmapIndexMgr::Search(const Service::Req & req, Service::Rsp & rsp)
 		ERROR_LOG("bitmap index not build");
 		return RET_ERROR;
 	}
+	int ret2 = index->SearchStupid(req, rsp);
 	int ret = index->Search(req, rsp);
 	return ret;
 }

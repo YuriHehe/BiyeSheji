@@ -3,7 +3,7 @@
 namespace offline {
 void rand_model()
 {
-	// 100w���
+	// 100w
 	const int MAXADS = 1e6;
 	std::ofstream of;
 	of.open("rand_model.model", 'w');

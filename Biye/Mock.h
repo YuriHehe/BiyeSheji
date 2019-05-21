@@ -21,7 +21,6 @@ public:
 	void PushReq(Service::REQ* req);
 
 	Service::REQ* PopReq();
-
 private:
 	std::mutex mtx_msg_;
 

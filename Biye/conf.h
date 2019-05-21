@@ -5,7 +5,7 @@ namespace conf {
 class ConfMgr {
 public:
 	static ConfMgr* instance() {
-		static thread_local ConfMgr conf_mgr;
+		static ConfMgr conf_mgr;
 		return &conf_mgr;
 	}
 	ConfMgr();

@@ -5,7 +5,6 @@
 namespace Service {
 class UserContext {
 public:
-	// ������Ķ�������
 	std::unordered_map<std::string, std::vector<int64_t>> target_items;
 };
 
@@ -22,7 +21,7 @@ struct Rsp {
 struct REQ {
 	Req req_;
 	Rsp rsp_;
-	std::mutex mtx_;
+	std::atomic<bool> ready_ = false;
 };
 
 }

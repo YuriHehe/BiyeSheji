@@ -5,7 +5,7 @@
 namespace Task {
 class WorkerTask : public TaskBase {
 public:
-
+	WorkerTask() : TaskBase() {};
 protected:
 	virtual int realrun() override;
 private:

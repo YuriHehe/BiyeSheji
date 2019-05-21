@@ -5,7 +5,9 @@ namespace Task {
 void TaskBase::run()
 {
 	stop_sign_ = true;
-	handler_.wait();
+	if (handler_.valid()) {
+		handler_.wait();
+	}
 	stop_sign_ = false;
 
 	handler_ = TaskMgr::instance()->run([=]() {
@@ -20,6 +22,8 @@ void TaskBase::stop()
 TaskBase::~TaskBase()
 {
 	stop();
-	handler_.wait();
+	if (handler_.valid()) {
+		handler_.wait();
+	}
 }
 }

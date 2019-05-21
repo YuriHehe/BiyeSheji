@@ -25,6 +25,8 @@ public:
 	void Set(size_t index, bool bit);
 
 	void Flip();
+
+	void Dump();
 private:
 	std::bitset<BITMAP_SIZE> bits_;
 };

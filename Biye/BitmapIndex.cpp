@@ -7,6 +7,9 @@ namespace bitmap {
 BitmapIndex::BitmapIndex()
 {
 	all_ = bitmap::BitmapMgr::instance()->allocate();
+
+	allow_field_.insert("age");
+	allow_field_.insert("gender");
 }
 int BitmapIndex::SearchStupid(const Service::Req& req, Service::Rsp& rsp) const
 {
@@ -14,7 +17,7 @@ int BitmapIndex::SearchStupid(const Service::Req& req, Service::Rsp& rsp) const
 	std::vector<int> tmp;
 	std::set<int> ans;
 	all_->get_set_list(tmp);
-	std::copy(tmp.begin(), tmp.end(), std::back_inserter(ans));
+	for (auto v : tmp) ans.insert(v);
 	for (const auto& field : allow_field_) {
 		std::set<int> excludes;
 		const auto& index_field = index_.find(field);
@@ -28,7 +31,7 @@ int BitmapIndex::SearchStupid(const Service::Req& req, Service::Rsp& rsp) const
 			continue;
 		}
 		tmp.clear(); field_all->second->get_set_list(tmp);
-		std::copy(tmp.begin(), tmp.end(), std::back_inserter(excludes));
+		for (auto v : tmp) excludes.insert(v);
 		const auto& items = req.user_context.target_items;
 		auto itr = items.find(field);
 		if (itr != items.end()) {
@@ -48,7 +51,9 @@ int BitmapIndex::SearchStupid(const Service::Req& req, Service::Rsp& rsp) const
 			ans.erase(v);
 		}
 	}
-	std::copy(ans.begin(), ans.end(), std::back_inserter(rsp.res_aids));
+	for (auto index : ans) {
+		rsp.res_aids.push_back(index_2_adid_[index]);
+	}
 	INFO_LOG("stupid search time use " + std::to_string(timer.get_elapsed_us()) + "ms");
 	return RET_SUCCESS;
 }
@@ -60,6 +65,7 @@ int BitmapIndex::Search(const Service::Req& req, Service::Rsp& rsp) const
 	include_ads->Copy(*all_);
 
 	for (const auto& field : allow_field_) {
+		TRACE_LOG("field search " + field);
 		auto exclude_ads = BitmapMgr::instance_thread()->allocate();
 		const auto& index_field = index_.find(field);
 		if (index_field == index_.end()) {
@@ -86,9 +92,12 @@ int BitmapIndex::Search(const Service::Req& req, Service::Rsp& rsp) const
 		}
 		include_ads->Exclude(*exclude_ads);
 	}
-
-	include_ads->get_set_list(rsp.res_aids);
-	INFO_LOG("stupid search time use " + std::to_string(timer.get_elapsed_us()) + "ms");
+	std::vector<int> res_index;
+	include_ads->get_set_list(res_index);
+	for (auto index : res_index) {
+		rsp.res_aids.push_back(index_2_adid_[index]);
+	}
+	INFO_LOG("search time use " + std::to_string(timer.get_elapsed_us()) + "ms");
 	return RET_SUCCESS;
 }
 int BitmapIndex::add_to_index(const std::unordered_map<int64_t, data::AdModel> & models)
@@ -98,7 +107,7 @@ int BitmapIndex::add_to_index(const std::unordered_map<int64_t, data::AdModel> &
 		size_t index = adcount_++;
 		int64_t aid = model.aid();
 		adid_2_index_[aid] = index;
-		index_2_adid_[index] = aid;
+		index_2_adid_.push_back(aid);
 		for (const auto& field : allow_field_) {
 			std::vector<int64_t> value;
 			int ret = model.get_items(field, value);
@@ -107,7 +116,13 @@ int BitmapIndex::add_to_index(const std::unordered_map<int64_t, data::AdModel> &
 			}
 			// add
 			for (auto v : value) {
+				if (index_[field].find(v) == index_[field].end()) {
+					index_[field][v] = BitmapMgr::instance()->allocate();
+				}
 				index_[field][v]->Set(index, 1); 
+			}
+			if (index_[field].find(BITMAP_MAGIC_ALL) == index_[field].end()) {
+				index_[field][BITMAP_MAGIC_ALL] = BitmapMgr::instance()->allocate();
 			}
 			index_[field][BITMAP_MAGIC_ALL]->Set(index, 1);
 		}

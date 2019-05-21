@@ -3,6 +3,7 @@
 
 namespace util {
 void string_split_to_vector(std::string str, char spliter, std::vector<std::string>& vec) {
+	vec.clear();
     std::string split;
     for (auto c : str) {
         if (c == spliter && split.size()) {

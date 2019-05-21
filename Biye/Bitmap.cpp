@@ -1,6 +1,7 @@
 #include "Bitmap.h"
 #include "BitmapMgr.h"
 #include "log.h"
+#include "util.h"
 
 namespace bitmap {
 Bitmap::Bitmap()
@@ -32,9 +33,7 @@ void Bitmap::Exclude(const Bitmap & bitmap)
 	auto bmp = BitmapMgr::instance_thread()->allocate();
 	bmp->Copy(bitmap);
 	bmp->Flip();
-	Flip();
-	Union(*bmp);
-	Flip();
+	Intersect(*bmp);
 }
 
 uint32_t Bitmap::nbit()
@@ -64,6 +63,13 @@ void Bitmap::Set(size_t index, bool bit)
 void Bitmap::Flip()
 {
 	bits_.flip();
+}
+
+void Bitmap::Dump()
+{
+	std::vector<int> v;
+	get_set_list(v);
+	TRACE_LOG(util::int_vector_to_string(v));
 }
 
 } // namespace bitmap

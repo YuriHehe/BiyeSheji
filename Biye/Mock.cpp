@@ -3,7 +3,6 @@
 namespace mock {
 void MockMgr::PushReq(Service::REQ* p2)
 {
-	p2->mtx_.lock();
 	std::lock_guard<std::mutex> lock(mtx_msg_);
 	wait_list_.Push(p2);
 }

@@ -20,7 +20,6 @@ int AdloadTask::realrun()
 void AdloadTask::reload()
 {
 	INFO_LOG("start data reload");
-	// �ȴ��ļ���ȡ���
 	std::unordered_map<int64_t, data::AdModel> models;
 
 	std::ifstream ifile;
@@ -30,6 +29,7 @@ void AdloadTask::reload()
 		std::stringstream ss(line);
 		int64_t aid;
 		ss >> aid;
+		models[aid].set_aid(aid);
 		std::string field_item;
 		while (ss >> field_item) {
 			// split item
@@ -54,7 +54,6 @@ void AdloadTask::reload()
 		}
 	}
 
-	// ���ع�����ݵ�IndexData
 	bitmap::BitmapIndexMgr::instance()->build(models);
 
 	INFO_LOG("end data reload");

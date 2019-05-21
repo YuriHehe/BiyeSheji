@@ -120,6 +120,12 @@
     <ClInclude Include="offline_rand_model.h">
       <Filter>源文件\offline</Filter>
     </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -164,11 +170,14 @@
     <ClCompile Include="Mock.cpp">
       <Filter>源文件\mock</Filter>
     </ClCompile>
-    <ClCompile Include="TestService.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="offline_rand_model.cpp">
       <Filter>源文件\offline</Filter>
+    </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="TestService.cpp">
+      <Filter>源文件\mock</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

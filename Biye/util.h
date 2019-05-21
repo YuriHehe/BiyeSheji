@@ -20,14 +20,14 @@ void string_split_to_vector(std::string str, char spliter, std::vector<std::stri
 
 template<typename INT>
 void string_split_to_int_vector(std::string str, char spliter, std::vector<INT>& vec) {
-    std::string str;
-    string_split_to_vector(str, spliter, str);
-    std::vector<INT> vec;
+	vec.clear();
+	std::vector<std::string> str_vec;
+    string_split_to_vector(str, spliter, str_vec);
     try {
-        for (auto s : str) {
-            int64_t tar;
-            std::stoll(s, tar);
-            vec.push_back(INT(tar));
+        for (auto s : str_vec) {
+            INT tar;
+            tar = std::stoll(s);
+            vec.push_back(tar);
         }
     } catch (...) {
         ERROR_LOG("error target item value!");
