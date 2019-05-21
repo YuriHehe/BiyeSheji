@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\Bitmap">
+      <UniqueIdentifier>{c26cd262-fe76-46e8-920d-2986a6f29b46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\RingBuffer">
+      <UniqueIdentifier>{74d14bdb-f5cb-4c04-892c-b1aabde176e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\test">
+      <UniqueIdentifier>{9c4965bd-08e2-459f-9839-b2d7f4136b78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\handler">
+      <UniqueIdentifier>{f783fb36-3ca5-4466-89ca-416c3777a696}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Data">
+      <UniqueIdentifier>{59b904c8-9b4c-4457-8034-2e0605884ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\common">
+      <UniqueIdentifier>{3cfe11bb-e0fa-48bc-b4f7-c477b5962b0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\task">
+      <UniqueIdentifier>{6e28491a-1867-49ff-a8b3-23c667dbabe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\thread">
+      <UniqueIdentifier>{1e95b958-020a-4e4a-86c5-cf5fbaa6e9e4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitmap.h">
+      <Filter>源文件\Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapMgr.h">
+      <Filter>源文件\Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="RingBuffer.h">
+      <Filter>源文件\RingBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="test.h">
+      <Filter>源文件\test</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapPredefine.h">
+      <Filter>源文件\Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="conf.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="predefine.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="log.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="service.h">
+      <Filter>源文件\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapIndex.h">
+      <Filter>源文件\Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="AdModel.h">
+      <Filter>源文件\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="error_code.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="RitFieldMgr.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="usercontext.h">
+      <Filter>源文件\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapIndexMgr.h">
+      <Filter>源文件\Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="adloadtask.h">
+      <Filter>源文件\task</Filter>
+    </ClInclude>
+    <ClInclude Include="wokertask.h">
+      <Filter>源文件\task</Filter>
+    </ClInclude>
+    <ClInclude Include="threadpool.h">
+      <Filter>源文件\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="taskmgr.h">
+      <Filter>源文件\task</Filter>
+    </ClInclude>
+    <ClInclude Include="task.h">
+      <Filter>源文件\task</Filter>
+    </ClInclude>
+    <ClInclude Include="iotask.h">
+      <Filter>源文件\task</Filter>
+    </ClInclude>
+    <ClInclude Include="Mock.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Biye.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Bitmap.cpp">
+      <Filter>源文件\Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapMgr.cpp">
+      <Filter>源文件\Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>源文件\test</Filter>
+    </ClCompile>
+    <ClCompile Include="conf.cpp">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapIndex.cpp">
+      <Filter>源文件\Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="AdModel.cpp">
+      <Filter>源文件\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapIndexMgr.cpp">
+      <Filter>源文件\Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="adloadtask.cpp">
+      <Filter>源文件\task</Filter>
+    </ClCompile>
+    <ClCompile Include="wokertask.cpp">
+      <Filter>源文件\task</Filter>
+    </ClCompile>
+    <ClCompile Include="Mock.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="task.cpp">
+      <Filter>源文件\task</Filter>
+    </ClCompile>
+    <ClCompile Include="iotask.cpp">
+      <Filter>源文件\task</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="conf.conf">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+</Project>
