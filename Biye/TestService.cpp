@@ -5,6 +5,7 @@
 
 int mock::TestService::realrun()
 {
+	INFO_LOG("run test service");
 	while (!is_stoping()) {
 		Service::REQ req;
 		req.req_.req_id = rand() * rand() % int64_t(1e9 + 7);

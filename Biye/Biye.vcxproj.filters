@@ -187,5 +187,8 @@
     <None Include="local_model.model">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="rand_model.model">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

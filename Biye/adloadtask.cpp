@@ -4,6 +4,7 @@
 #include "AdModel.h"
 #include "BitmapIndexMgr.h"
 #include "util.h"
+#include "timer.h"
 
 namespace Task {
 int AdloadTask::realrun()
@@ -19,6 +20,7 @@ int AdloadTask::realrun()
 }
 void AdloadTask::reload()
 {
+	timer::Timer timer;
 	INFO_LOG("start data reload");
 	std::unordered_map<int64_t, data::AdModel> models;
 
@@ -53,9 +55,10 @@ void AdloadTask::reload()
 			}
 		}
 	}
+	INFO_LOG("end data reload cost " + std::to_string(timer.get_elapsed_us()) + "ms");
 
 	bitmap::BitmapIndexMgr::instance()->build(models);
 
-	INFO_LOG("end data reload");
+	INFO_LOG("end adload cost " + std::to_string(timer.get_elapsed_us()) + "ms");
 }
 }

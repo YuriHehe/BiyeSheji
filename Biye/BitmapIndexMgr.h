@@ -20,6 +20,8 @@ public:
 
 	// 线程安全的search
 	int Search(const Service::Req& req, Service::Rsp& rsp);
+
+	bool ready();
 private:
 	// 双buffer构造
 	BitmapIndexPtr index_;

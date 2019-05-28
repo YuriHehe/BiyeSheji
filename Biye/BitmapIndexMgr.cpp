@@ -31,9 +31,15 @@ int BitmapIndexMgr::Search(const Service::Req & req, Service::Rsp & rsp)
 		ERROR_LOG("bitmap index not build");
 		return RET_ERROR;
 	}
-	int ret2 = index->SearchStupid(req, rsp);
+	//int ret2 = index->SearchStupid(req, rsp);
 	int ret = index->Search(req, rsp);
 	return ret;
+}
+
+bool BitmapIndexMgr::ready()
+{
+	std::lock_guard<std::mutex> lock(mtx_);
+	return index_ != nullptr;
 }
 
 }
